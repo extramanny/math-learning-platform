@@ -1,1 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathMaster - Learn College Math Online</title>
+    
+    <!-- KaTeX for beautiful math rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>🎓 MathMaster</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#modules">Modules</a></li>
+                <li><a href="#practice">Practice</a></li>
+                <li><a href="#progress">Progress</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </div>
+    </nav>
 
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Master College Mathematics</h2>
+            <p>Learn algebra, statistics, combinatorics, and algorithms with interactive lessons</p>
+            <button class="cta-button" onclick="scrollToModules()">Start Learning</button>
+        </div>
+    </section>
+
+    <!-- Modules Section -->
+    <section id="modules" class="modules">
+        <div class="container">
+            <h2>Learning Modules</h2>
+            <div class="module-grid">
+                
+                <!-- Module 1: Combinatorics -->
+                <div class="module-card" style="border-top: 5px solid #10b981;">
+                    <h3>🟢 Combinatorics & Probability</h3>
+                    <ul>
+                        <li>Permutations and Combinations</li>
+                        <li>Marginal Probability</li>
+                        <li>Conditional Probability</li>
+                    </ul>
+                    <button onclick="startModule('combinatorics')">Start Module</button>
+                </div>
+
+                <!-- Module 2: Number Theory -->
+                <div class="module-card" style="border-top: 5px solid #3b82f6;">
+                    <h3>🔵 Number Theory & Data</h3>
+                    <ul>
+                        <li>Exponents and Logarithms</li>
+                        <li>Binary and Data Representation</li>
+                        <li>Quadratic Equations</li>
+                    </ul>
+                    <button onclick="startModule('numbers')">Start Module</button>
+                </div>
+
+                <!-- Module 3: Modular Math -->
+                <div class="module-card" style="border-top: 5px solid #f59e0b;">
+                    <h3>🟡 Modular Mathematics</h3>
+                    <ul>
+                        <li>Numbering Systems</li>
+                        <li>Prime Numbers</li>
+                        <li>Modular Arithmetic</li>
+                    </ul>
+                    <button onclick="startModule('modular')">Start Module</button>
+                </div>
+
+                <!-- Module 4: Algorithms -->
+                <div class="module-card" style="border-top: 5px solid #1f2937;">
+                    <h3>⚫ Algorithms</h3>
+                    <ul>
+                        <li>Sorting Algorithms</li>
+                        <li>Search Algorithms</li>
+                        <li>Cryptography Basics</li>
+                    </ul>
+                    <button onclick="startModule('algorithms')">Start Module</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sample Lesson Section -->
+    <section id="lesson" class="lesson" style="display: none;">
+        <div class="container">
+            <h2 id="lesson-title">Combinatorics: Permutations</h2>
+            
+            <!-- Step 1: Show Solution -->
+            <div class="lesson-step">
+                <h3>Step 1: Learn the Concept</h3>
+                <div class="concept-box">
+                    <p>A permutation is an arrangement of objects in a specific order.</p>
+                    <div class="math-display">
+                        Formula: \(P(n,r) = \frac{n!}{(n-r)!}\)
+                    </div>
+                    <p>Where n is the total number of items and r is the number of items being arranged.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Example: How many ways can we arrange 3 letters from ABC?</h4>
+                    <div class="solution">
+                        <p>Solution: \(P(3,3) = \frac{3!}{(3-3)!} = \frac{3!}{0!} = \frac{6}{1} = 6\)</p>
+                        <p>The arrangements are: ABC, ACB, BAC, BCA, CAB, CBA</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Guided Practice -->
+            <div class="lesson-step">
+                <h3>Step 2: Guided Practice</h3>
+                <div class="practice-problem">
+                    <p>How many ways can you arrange 4 books on a shelf from a collection of 6 books?</p>
+                    <div class="multiple-choice">
+                        <p>What's the first step?</p>
+                        <label><input type="radio" name="step1" value="a"> Calculate 6!</label>
+                        <label><input type="radio" name="step1" value="b"> Use P(6,4) formula</label>
+                        <label><input type="radio" name="step1" value="c"> Multiply 6 × 4</label>
+                        <button onclick="checkAnswer('step1', 'b')">Check Answer</button>
+                    </div>
+                    <div id="feedback" class="feedback"></div>
+                </div>
+            </div>
+
+            <!-- Step 3: Independent Practice -->
+            <div class="lesson-step">
+                <h3>Step 3: Try It Yourself</h3>
+                <div class="practice-problem">
+                    <p>A password must contain 3 different letters from the alphabet (26 letters). How many possible passwords are there?</p>
+                    <input type="number" id="answer" placeholder="Enter your answer">
+                    <button onclick="checkNumericAnswer()">Submit Answer</button>
+                    <div id="numeric-feedback" class="feedback"></div>
+                </div>
+            </div>
+
+            <button class="back-button" onclick="backToModules()">Back to Modules</button>
+        </div>
+    </section>
+
+    <!-- Progress Section -->
+    <section id="progress" class="progress">
+        <div class="container">
+            <h2>Your Progress</h2>
+            <div class="progress-grid">
+                <div class="progress-card">
+                    <h3>Lessons Completed</h3>
+                    <div class="progress-number">0</div>
+                </div>
+                <div class="progress-card">
+                    <h3>Practice Problems</h3>
+                    <div class="progress-number">0</div>
+                </div>
+                <div class="progress-card">
+                    <h3>Current Streak</h3>
+                    <div class="progress-number">0 days</div>
+                </div>
+                <div class="progress-card">
+                    <h3>Mastery Level</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 MathMaster - Free Education for Everyone</p>
+            <p>Inspired by Khan Academy's mission to provide free, world-class education</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize KaTeX rendering
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\(', right: '\\)', display: false},
+                    {left: '\\[', right: '\\]', display: true}
+                ]
+            });
+        });
+
+        // Navigation functions
+        function scrollToModules() {
+            document.getElementById('modules').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function startModule(moduleName) {
+            document.getElementById('modules').style.display = 'none';
+            document.getElementById('lesson').style.display = 'block';
+            
+            // Update progress (in real app, this would be saved)
+            updateProgress();
+        }
+
+        function backToModules() {
+            document.getElementById('modules').style.display = 'block';
+            document.getElementById('lesson').style.display = 'none';
+        }
+
+        // Practice functions
+        function checkAnswer(questionName, correctAnswer) {
+            const selected = document.querySelector(`input[name="${questionName}"]:checked`);
+            const feedback = document.getElementById('feedback');
+            
+            if (selected && selected.value === correctAnswer) {
+                feedback.innerHTML = '<span style="color: #10b981;">✓ Correct! P(6,4) = 6!/(6-4)! = 6!/2! = 360</span>';
+            } else {
+                feedback.innerHTML = '<span style="color: #ef4444;">✗ Try again. Remember: P(n,r) = n!/(n-r)!</span>';
+            }
+        }
+
+        function checkNumericAnswer() {
+            const answer = document.getElementById('answer').value;
+            const feedback = document.getElementById('numeric-feedback');
+            const correct = 15600; // P(26,3) = 26!/(26-3)! = 26×25×24
+            
+            if (parseInt(answer) === correct) {
+                feedback.innerHTML = '<span style="color: #10b981;">✓ Excellent! P(26,3) = 26×25×24 = 15,600</span>';
+                updateProgress();
+            } else {
+                feedback.innerHTML = '<span style="color: #ef4444;">✗ Not quite. Hint: P(26,3) = 26×25×24</span>';
+            }
+        }
+
+        // Progress tracking
+        function updateProgress() {
+            // In a real app, this would save to a database
+            const completed = parseInt(localStorage.getItem('lessonsCompleted') || 0) + 1;
+            localStorage.setItem('lessonsCompleted', completed);
+            
+            // Update display
+            document.querySelector('.progress-number').textContent = completed;
+            
+            // Update progress bar
+            const progressFill = document.querySelector('.progress-fill');
+            const percentage = Math.min((completed / 20) * 100, 100);
+            progressFill.style.width = percentage + '%';
+        }
+
+        // Load saved progress on page load
+        window.addEventListener('load', function() {
+            const completed = localStorage.getItem('lessonsCompleted') || 0;
+            document.querySelector('.progress-number').textContent = completed;
+            
+            const percentage = Math.min((completed / 20) * 100, 100);
+            document.querySelector('.progress-fill').style.width = percentage + '%';
+        });
+    </script>
+</body>
+</html>
